@@ -1,0 +1,343 @@
+body,
+html {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #262626;
+  font-family: sans-serif;
+}
+
+header {
+  width: 100%;
+}
+.logo {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+.logo a {
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.logo a:hover {
+  color: darkgoldenrod;
+}
+
+#maincontent {
+  position: relative;
+  width: 100%;
+}
+#maincontent #map-container {
+  position: absolute;
+  width: 100%;
+  height: 500px;
+  background: white;
+}
+#maincontent #map-container #map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: white;
+}
+
+.restaurants {
+  width: 100%;
+  position: absolute;
+  top: 500px;
+  background: transparent;
+  color: #fff;
+}
+.restaurants h2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 5px;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.filter-options .options {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.filter-options .options select {
+  width: 130px;
+  height: 50px;
+  padding: 10px;
+  border-radius: 30px;
+  margin-top: 5px;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 400;
+}
+
+.filter-options .options option {
+  width: 130px;
+  height: 50px;
+  font-size: 15px;
+  text-align: center;
+  font-family: sans-serif;
+  padding: 5px;
+}
+
+.restaurants-results {
+  width: 100%;
+  position: relative;
+  margin-top: 20px;
+}
+
+.restaurants-results #restaurants-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.restaurant {
+  margin: 10px;
+  width: 400px;
+  min-height: 450px;
+  background: blanchedalmond;
+  position: relative;
+  background: #f8f9fa;
+  box-shadow: inset 0 0 10px #000000;
+  transition: all 0.3s ease;
+}
+
+.restaurant .img {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+.restaurant img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.restaurant h4 {
+  display: block;
+  color: black;
+  margin: 2px;
+  padding: 5px;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 100;
+  padding: 5px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.restaurant p {
+  display: block;
+  color: black;
+  margin: 2px;
+  padding: 5px;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 100;
+  padding: 5px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.restaurant a {
+  width: 120px;
+  display: block;
+  height: 50px;
+  background: #262626;
+  color: #fff;
+  padding: 5px;
+  margin: 2px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 50px;
+  transition: all 0.3s ease;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1 #fff solid;
+  border-radius: 30px;
+}
+
+.restaurant a:hover {
+  color: darkgoldenrod;
+}
+
+.restaurant:hover {
+  color: #fff;
+  background: darkgoldenrod;
+}
+.restaurant:hover img {
+  transform: scale(1.1);
+}
+.restaurant:hover > p,
+.restaurant:hover > h4 {
+  color: #fff;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #262626;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+  margin: 0;
+  padding: 0;
+  padding: 2px;
+  margin-top: 20px;
+}
+footer a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px;
+  font-size: 20px;
+}
+
+footer div{
+  width: 80%;
+  margin: auto;
+}
+
+/*=====================second page=========================*/
+#breadcrumb{
+  display: block;
+  color: #fff;
+  text-align: center;
+}
+#breadcrumb a{
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+#restaurant-container{
+  position: relative;
+  top: 500px;
+  width: 100%;
+  background: transparent;
+  min-height: 500px;
+}
+
+#restaurant-container img{
+  position: relative;
+  width: 100%;
+  height: 500px;
+}
+
+#restaurant-container h1,#restaurant-container h3{
+  width: 100%;
+  position: relative;
+  text-align: left;
+  font-family: sans-serif;
+  font-size: 15px;
+  font-weight: 100;
+  color: #fff;
+  padding: 5px;
+  margin: 5px;
+}
+#restaurant-container #restaurant-hours{
+  margin:10px;
+}
+#restaurant-container #restaurant-hours tr{
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+  padding: 5px;
+  margin: 5px;
+}
+#restaurant-container #restaurant-hours tr td:nth-child(1){
+  width: 20%;
+  border-right: 1px solid #fff;
+  padding: 5px;
+  margin: 5px;
+  text-align: left;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 15px;
+}
+#restaurant-container #restaurant-hours tr td:nth-child(2){
+  width: 80%;
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 15px;
+}
+#reviews-list h1{
+  margin: 5px;
+  padding: 10px;
+  width: 80%;
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 15px;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+}
+
+#reviews-list h3{
+  margin: 5px;
+  padding: 10px;
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 15px;
+  color: #fff;
+  padding: 15px;
+  width: 80%;
+
+}
+
+#restaurant-container #restaurant-address{
+  width: 80%;
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+  .logo a {
+    font-size: 20px;
+  }
+
+  #restaurant-container h1,#restaurant-container h3{
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .restaurant {
+    width: 100%;
+  }
+}
