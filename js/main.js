@@ -24,12 +24,11 @@ fetchNeighborhoods = () => {
 * Set neighborhoods HTML.
 */
 fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
-  const select = document.getElementById('neighborhoods-select');
   neighborhoods.forEach(neighborhood => {
     const option = document.createElement('option');
     option.innerHTML = neighborhood;
     option.value = neighborhood;
-    select.append(option);
+    document.getElementById('neighborhoods-select').append(option);
   });
 }
 
@@ -50,7 +49,10 @@ fetchCuisines = () => {
 */
 fillCuisinesHTML = (cuisines = self.cuisines) => {
   cuisines.forEach(cuisine => {
-    $("#cuisines-select").append($(`<option value=${cuisine}>${cuisine}</option>`))
+    let option = document.createElement('option')
+    option.value = cuisine
+    option.innerText = cuisine
+    document.getElementById('cuisines-select').append(option)
   });
 }
 
@@ -116,23 +118,48 @@ resetRestaurants = (restaurants) => {
 */
 fillRestaurantsHTML = (restaurants = self.restaurants) => {
 
-  const restaurantslist = $('#restaurants-list')
+  const restaurantslist = document.getElementById('restaurants-list')
 
-  restaurants.forEach(restaurant => restaurantslist.append(
 
-    $(`<div class="restaurant">
-    <div class="img">
-      <img  src=${DBHelper.imageUrlForRestaurant(restaurant)}   alt=${restaurant.name}>
-    </div>
-    <h4 >${restaurant.name}</h4>
-    <p >${restaurant.neighborhood}</p>
-    <p >${restaurant.address}</p>
-    <a href=${DBHelper.urlForRestaurant(restaurant)} tabindex="3"
-      aria-label="view details for ${restaurant.name}" >View Details</a>
-  </div>
-`)))
-  
+  restaurants.forEach(restaurant => {
+    let restaurantdiv = document.createElement('div');
+    restaurantdiv.classList.add('restaurant');
 
+    let imageWrapper = document.createElement('div');
+    imageWrapper.classList.add('img')
+
+
+    let image = document.createElement('img')
+    image.src = DBHelper.imageUrlForRestaurant(restaurant)
+    image.alt = restaurant.name
+
+
+    let name = document.createElement('h4')
+    name.innerText = restaurant.name
+
+    let neighborhood = document.createElement('p')
+    neighborhood.innerText = restaurant.neighborhood;
+
+    let address = document.createElement('p')
+    address.innerText = restaurant.address;
+
+    let a = document.createElement('a')
+    a.href = DBHelper.urlForRestaurant(restaurant)
+    a.tabIndex = 3
+    a.setAttribute('aria-label', `view details for ${restaurant.name}`)
+    a.innerText = "View Details"
+
+
+    imageWrapper.appendChild(image)
+
+    restaurantdiv.append(imageWrapper)
+    restaurantdiv.append(name)
+    restaurantdiv.append(neighborhood)
+    restaurantdiv.append(address)
+    restaurantdiv.append(a)
+
+    restaurantslist.appendChild(restaurantdiv)
+  })
 
   addMarkersToMap()
 }
@@ -159,11 +186,11 @@ addMarkersToMap = (restaurants = self.restaurants) => {
 
 
 
-if('serviceWorker'  in navigator){
-  window.addEventListener("load",()=>{
+if ('serviceWorker' in navigator) {
+  window.addEventListener("load", () => {
     navigator.serviceWorker
-    .register('../sw.js')
-    .then(reg=>console.log('service worker : registered '))
-    .catch(err=>console.log(`service worker : error  ${err}`));
+      .register('../sw.js')
+      .then(reg => console.log('service worker : registered '))
+      .catch(err => console.log(`service worker : error  ${err}`));
   })
 }
