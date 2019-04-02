@@ -33,8 +33,14 @@ initMap = () => {
       id: 'mapbox.streets'
     }).addTo(newMap);
 
-    
-    $("#breadcrumb").append($(`<li><h1>${restaurant.name}</h1></li>`))
+    let breadcrumb = document.getElementById('breadcrumb')
+    let li = document.createElement('li')
+    let h1 = document.createElement('h1')
+    h1.innerText = restaurant.name
+
+    li.append(h1)
+    breadcrumb.append(li)
+
     DBHelper.mapMarkerForRestaurant(self.restaurant, self.newMap);
 
   });
@@ -69,13 +75,45 @@ fetchRestaurantFromURL = (renderMapCB) => {
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
 
-  const restaurantHTML = $('#restaurant-container')
-  restaurantHTML.append(`
-  <img id="restaurant-img" tabindex="3"  src=${DBHelper.imageUrlForRestaurant(restaurant)} alt=${restaurant.name} >
-  <h1 id="restaurant-name" tabindex="3"   aria-label="${restaurant.name}" >${restaurant.name}</h1>
-  <h3 id="restaurant-cuisine" tabindex="3" aria-label="cusine type of this restaurant is ${restaurant.cuisine_type}" >${restaurant.cuisine_type}</h3>
-  <h3 id="restaurant-address" tabindex="3"  aria-label="this restaurant address is ${restaurant.address}">${restaurant.address}</h3>
- `);
+  const restaurantHTML = document.getElementById('restaurant-container')
+
+  let img = document.createElement('img')
+  img.src = DBHelper.imageUrlForRestaurant(restaurant)
+  img.alt = restaurant.name
+  img.setAttribute('id', 'restaurant-img')
+  img.tabIndex = 3
+
+
+  let name = document.createElement('h1')
+  name.setAttribute('id', "restaurant-name")
+  name.setAttribute('aria-label', restaurant.name)
+  name.innerText = restaurant.name
+  name.tabIndex = 3
+
+  let cuisine = document.createElement('h3')
+  cuisine.setAttribute('id', 'restaurant-cuisine')
+  cuisine.tabIndex = 3
+  cuisine.innerText = restaurant.cuisine_type
+  cuisine.setAttribute('aria-label', `cusine type of this restaurant is ${restaurant.cuisine_type}`)
+
+
+  let address = document.createElement('h3')
+  cuisine.setAttribute('id', 'restaurant-address')
+  address.tabIndex = 3
+  address.innerText = restaurant.address
+  address.setAttribute('aria-label', `this restaurant address is ${restaurant.address}`)
+
+  restaurantHTML.append(img)
+  restaurantHTML.append(name)
+  restaurantHTML.append(cuisine)
+  restaurantHTML.append(address)
+
+  //   restaurantHTML.append(`
+  //   <img id="restaurant-img" tabindex="3"  src=${} alt=${} >
+  //   <h1 id= tabindex="3"   ="${}" >${restaurant.name}</h1>
+  //   <h3 id="" tabindex="3"  >${}</h3>
+  //   <h3 id="" tabindex="3"  aria-label="this restaurant address is ${restaurant.address}">${restaurant.address}</h3>
+  //  `);
 
   // fill operating hours
   if (restaurant.operating_hours) {
@@ -89,14 +127,28 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
  * Create restaurant operating hours HTML table and add it to the webpage.
  */
 fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
-  $("#restaurant-container").append($(`<table id="restaurant-hours"  aria-label="operating hours" tabindex="4"></table>`));
+  let restaurantContainer = document.getElementById('restaurant-container')
+
+  let table = document.createElement('table')
+  table.setAttribute('id', 'restaurant-hours')
+  table.tabIndex = 4
+  table.setAttribute('aria-label', 'operating hours')
+
+  restaurantContainer.append(table)
   for (let key in operatingHours) {
-    $("#restaurant-hours").append(
-      `<tr>
-      <td >${key}</td>
-      <td >${operatingHours[key]}</td>
-    </tr>`)
+
+    let tr = document.createElement('tr')
+    let keytd = document.createElement('td')
+    let Hourstd = document.createElement('td')
+    keytd.innerText = key
+    Hourstd.innerText = operatingHours[key]
+
+    tr.append(keytd)
+    tr.append(Hourstd)
+    table.append(tr)
   }
+
+
 }
 
 // /**
@@ -104,29 +156,53 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
 //  */
 fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 
-  
+
 
   if (!reviews) {
-    $(`#reviews-container`).append(`<h3>No Reviews Yet</h3>`)
+    let reviewsContainer = document.getElementById('reviews-container')
+    let h3 = document.createElement('h3')
+    h3.innerText = `No Reviews Yet`
+    reviewsContainer.append(h3)
     return;
   }
   reviews.forEach(review => {
-    $(`#reviews-list`).append( 
-      $(`
-      <div aria-label="review" tabindex="5">
-        <h3 class="name">${review.name}</h3>
-        <h3 class="date">${review.date}</h3>
-        <h3 class="rate">Rating: ${review.rating}</h3>
-        <h3 class="comments">${ review.comments}</h3>
-      </div>
-      `)
-     );
+
+    let reviewslist = document.getElementById('reviews-list')
+    let div = document.createElement('div')
+    div.setAttribute('aria-label', "review")
+    div.tabIndex = 5
+
+    let name = document.createElement('h3')
+    name.innerText = "date: " + review.name
+    name.classList.add('name')
+
+    let date = document.createElement('h3')
+    date.innerText = "date: " + review.date
+    date.classList.add('date')
+
+
+    let rating = document.createElement('h3')
+    rating.innerText = "rate: " + review.rating
+    rating.classList.add('rate')
+
+    let comments = document.createElement('h3')
+    comments.innerText = "comments: " + review.comments
+    comments.classList.add('comments')
+
+    div.append(name)
+    div.append(date)
+    div.append(rating)
+    div.append(comments)
+
+    reviewslist.append(div)
+
+
   });
- 
+
 }
 
 
-//got problem 
+
 getParameterByName = (name = 'id', url = window.location.href) => {
   return new URLSearchParams(location.search).get(name);
 }
